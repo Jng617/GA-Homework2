@@ -9,7 +9,6 @@ function Animals(animalArray) {
 	this.animal = animalArray;
 };
 
-
 // Using .filter()
 
 
@@ -19,6 +18,13 @@ Animals.prototype.threeLetterAnimal = function() {
 		return animal.length === 3;
 	});
 };
+
+// // Answer
+// var threeLetterPattern = /^[A-z]{3}$/i;
+// var threeLetterAnimals = animals.filter(function(element){
+// 	return threeLetterPattern.test(element); //true
+// });
+
 
 // Return an array with only animals that have two-word names.
 Animals.prototype.twoWordAnimal = function() {
@@ -32,8 +38,8 @@ Animals.prototype.twoWordAnimal = function() {
 // Return an array with only animals that don't start with the letter K.
 Animals.prototype.charNotK = function() {
 	return this.animal.filter(function(animal) {
-		var pattern = /^k/i;
-		return !pattern.exec(animal);
+		var pattern = /^((?!k).)*$/gm;
+		return pattern.exec(animal);
 	});
 };
 
@@ -54,7 +60,7 @@ Animals.prototype.rename = function(animal) {
 		return animal.replace (patternCat, "Kitty Cat");
 	} else if (patternDog.test(animal) === true) {
 		return animal.replace(patternDog, "Puppy");
-	} 
+	}
 };
 
 
@@ -67,7 +73,3 @@ console.log(Animals.twoWordAnimal());
 console.log(Animals.charNotK());
 console.log(Animals.beartoTeddy());
 console.log(Animals.rename());
-
-
-
-
