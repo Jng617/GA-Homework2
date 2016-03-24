@@ -29,7 +29,7 @@ Animals.prototype.threeLetterAnimal = function() {
 // Return an array with only animals that have two-word names.
 Animals.prototype.twoWordAnimal = function() {
 	return this.animal.filter(function(animal) {
-		var pattern = /[A-z]+ [A-z]+/i;
+		var pattern = /[A-z]+ [A-z]+/ig;
 		return pattern.exec(animal);
 
 	});
@@ -38,7 +38,7 @@ Animals.prototype.twoWordAnimal = function() {
 // Return an array with only animals that don't start with the letter K.
 Animals.prototype.charNotK = function() {
 	return this.animal.filter(function(animal) {
-		var pattern = /^((?!k).)*$/gm;
+		var pattern = /^[^k]/i;
 		return pattern.exec(animal);
 	});
 };
@@ -48,20 +48,23 @@ Animals.prototype.charNotK = function() {
 // Return an array that changes all animal names containing "bear" to "Teddy Bear".
 Animals.prototype.beartoTeddy = function() {
 	return this.animal.map(function(animal) {
-		return animal.replace(/bear|[A-z]+ bear/i, "Teddy Bear");
+		return animal.replace(/bear/ig, "Teddy Bear");
 	})
 };
 
 // Write a regular expression that checks if the animal is either cat or dog. If it is cat, replace the value with "Kitty Cat" and if it is a dog replace the value with "Puppy".
 Animals.prototype.rename = function(animal) {
-	var patternCat = /cat/i;
-	var patternDog = /dog/i;
-	if(patternCat.test(animal) === true) {
-		return animal.replace (patternCat, "Kitty Cat");
-	} else if (patternDog.test(animal) === true) {
-		return animal.replace(patternDog, "Puppy");
+	var patternCat = /^cat$/i;
+	var patternDog = /^dog$/i;
+	if(patternCat.test(element)) {
+				return "Kitty Cat";
+			} else if (patternDog.test(element)) {
+				return "Puppy";
+	}			else {
+			return element;
 	}
 };
+
 
 
 var Animals = new Animals(animalArray);
